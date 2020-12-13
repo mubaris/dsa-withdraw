@@ -155,7 +155,7 @@ export default defineComponent({
       const loading = this.$vs.loading()
       const dsa = _dsa.value
       const amount = Number.parseFloat(tokenAmount.value)
-      if (!amount || amount > tokenData.value.humanBal) {
+      if ((!amount || amount > tokenData.value.humanBal) && !withdrawMax.value) {
         this.$vs.notification({
           title: 'Error',
           text: 'Enter a valid number below the balance',
