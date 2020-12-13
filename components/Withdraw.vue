@@ -16,10 +16,10 @@
         <div v-if="dsaId > 0">
           <vs-row class="mh" v-if="tokenDataFetched" align="center" direction="column">
             <div style="margin: 4% 0">
-              <vs-row>Name -{{` `}}<span style="font-weight: bold">{{tokenData.name}}</span></vs-row>
-              <vs-row>Symbol -{{` `}}<span style="font-weight: bold">{{tokenData.symbol}}</span></vs-row>
+              <vs-row>Name -&nbsp;<span style="font-weight: bold">{{tokenData.name}}</span></vs-row>
+              <vs-row>Symbol -&nbsp;<span style="font-weight: bold">{{tokenData.symbol}}</span></vs-row>
               <!-- <vs-row>Decimals - <span style="font-weight: bold">{{tokenData.decimals}}</span></vs-row> -->
-              <vs-row>Balance -{{` `}}<span style="font-weight: bold">{{tokenData.humanBal}}</span></vs-row>
+              <vs-row>Balance -&nbsp;<span style="font-weight: bold">{{tokenData.humanBal}}</span></vs-row>
             </div>
             <div>
               <vs-row justify="center">
@@ -187,8 +187,11 @@ export default defineComponent({
         method: "withdraw",
         args: [tokenAddress.value, tokenAmt, addr, 0, 0]
       })
-      console.log(spells, spells)
-      await dsa.cast(spells)
+      try {
+        await dsa.cast(spells)
+      } catch (error) {
+        console.log(error)
+      }
       loading.close()
     }
 
