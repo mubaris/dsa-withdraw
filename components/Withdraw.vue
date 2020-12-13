@@ -16,10 +16,10 @@
         <div v-if="dsaId > 0">
           <vs-row class="mh" v-if="tokenDataFetched" align="center" direction="column">
             <div style="margin: 4% 0">
-              <vs-row>Name - <span style="font-weight: bold">{{tokenData.name}}</span></vs-row>
-              <vs-row>Symbol - <span style="font-weight: bold">{{tokenData.symbol}}</span></vs-row>
+              <vs-row>Name - <span style="font-weight: bold">` `{{tokenData.name}}</span></vs-row>
+              <vs-row>Symbol - <span style="font-weight: bold">` `{{tokenData.symbol}}</span></vs-row>
               <!-- <vs-row>Decimals - <span style="font-weight: bold">{{tokenData.decimals}}</span></vs-row> -->
-              <vs-row>Balance - <span style="font-weight: bold">{{tokenData.humanBal}}</span></vs-row>
+              <vs-row>Balance - <span style="font-weight: bold">` `{{tokenData.humanBal}}</span></vs-row>
             </div>
             <div>
               <vs-row justify="center">
@@ -154,6 +154,7 @@ export default defineComponent({
     async function withdraw() {
       const loading = this.$vs.loading()
       const dsa = _dsa.value
+      const web3 = _web3.value
       const amount = Number.parseFloat(tokenAmount.value)
       if ((!amount || amount > tokenData.value.humanBal) && !withdrawMax.value) {
         this.$vs.notification({
